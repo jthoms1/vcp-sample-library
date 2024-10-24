@@ -1,0 +1,8 @@
+import{j as e}from"./jsx-runtime-CkxqCPlQ.js";import"./index-DJO9vBfz.js";const a=({icon:l,title:o,description:c,altText:d,coloredBackground:m,alignment:r})=>{const p=`text-${r}`,u=r==="right"?"items-end":`items-${r}`;return e.jsx("div",{className:`w-full ${m?"bg-indigo-500 text-white":"text-base"} rounded-lg overflow-hidden flex-1`,children:e.jsxs("div",{className:`flex flex-col ${u} ${p} p-6`,children:[e.jsx("div",{className:"w-16 h-16 flex items-center justify-center",children:e.jsx("img",{src:l,alt:d,className:"w-full h-full"})}),e.jsx("h3",{className:"mt-6 text-xl font-medium",children:o}),e.jsx("div",{className:"mt-4 text-base",dangerouslySetInnerHTML:{__html:c}})]})})};a.__docgenInfo={description:"",methods:[],displayName:"IconCard",props:{icon:{required:!0,tsType:{name:"string"},description:""},title:{required:!0,tsType:{name:"string"},description:""},description:{required:!0,tsType:{name:"string"},description:""},altText:{required:!0,tsType:{name:"string"},description:""},coloredBackground:{required:!1,tsType:{name:"boolean"},description:""},alignment:{required:!1,tsType:{name:"union",raw:'"left" | "center" | "right"',elements:[{name:"literal",value:'"left"'},{name:"literal",value:'"center"'},{name:"literal",value:'"right"'}]},description:""}}};const f={component:a},t={args:{icon:"thing",title:"Title",description:"description",altText:""}};var i,n,s;t.parameters={...t.parameters,docs:{...(i=t.parameters)==null?void 0:i.docs,source:{originalSource:`{
+  args: {
+    icon: "thing",
+    title: "Title",
+    description: "description",
+    altText: ""
+  }
+}`,...(s=(n=t.parameters)==null?void 0:n.docs)==null?void 0:s.source}}};const h=["Default"];export{t as Default,h as __namedExportsOrder,f as default};
