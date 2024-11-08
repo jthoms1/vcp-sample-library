@@ -1,50 +1,47 @@
-import React from "react";
-import { BuilderComponent, builder, useIsPreviewing } from "@builder.io/react";
-import "../builder-registry";
+import {
+  BuilderContent,
+  Content,
+  fetchOneEntry,
+  isPreviewing,
+} from "@builder.io/sdk-react";
+import { useEffect, useState } from "react";
+import { CUSTOM_COMPONENTS } from "../builder-registry";
 
-// Builder Public API Key set in .env file
-builder.init(import.meta.env.VITE_PUBLIC_BUILDER_KEY!);
+const BUILDER_PUBLIC_API_KEY = import.meta.env.VITE_PUBLIC_BUILDER_KEY!;
 
-export default function BuilderPage() {
-  const isPreviewingInBuilder = useIsPreviewing();
-  const [notFound, setNotFound] = React.useState(false);
-  const [content, setContent] = React.useState(null);
+function App() {
+  const [content, setContent] = useState<BuilderContent | null>(null);
 
   // get the page content from Builder
-  React.useEffect(() => {
+  useEffect(() => {
     async function fetchContent() {
-      const content = await builder
-        .get("figma-imports", {
-          url: window.location.pathname,
-        })
-        .promise();
+      const content = await fetchOneEntry({
+        model: "figma-imports",
+        apiKey: BUILDER_PUBLIC_API_KEY,
+        userAttributes: {
+          urlPath: window.location.pathname || "/",
+        },
+      });
 
-      setContent(content);
-      setNotFound(!content);
-
-      // if the page title is found,
-      // set the document title
-      if (content?.data.title) {
-        document.title = content.data.title;
+      if (content) {
+        setContent(content);
       }
     }
     fetchContent();
   }, []);
 
-  if (content === null) {
-    return;
-  }
-  // If no page is found, return
-  // a 404 page from your code.
-  if (notFound && !isPreviewingInBuilder) {
-    return <div>404 Page Not Found</div>;
-  }
+  const shouldRenderBuilderContent = content || isPreviewing();
 
-  // return the page when found
-  return (
-    <>
-      {/* Render the Builder page */}
-      <BuilderComponent model="figma-imports" content={content} />
-    </>
+  return shouldRenderBuilderContent ? (
+    <Content
+      content={content}
+      model="page"
+      customComponents={CUSTOM_COMPONENTS}
+      apiKey={BUILDER_PUBLIC_API_KEY}
+    />
+  ) : (
+    <div>Content Not Found</div>
   );
 }
+
+export default App;

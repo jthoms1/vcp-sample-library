@@ -18,9 +18,9 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@builder.io/dev-tools": "^1.1.24",
+    "@builder.io/dev-tools": "^1.1.31",
     "@builder.io/react": "^5.0.7",
-    "@builder.io/sdk": "^3.0.4",
+    "@builder.io/sdk-react": "^2.0.29",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "tailwind-merge": "^2.5.3"
