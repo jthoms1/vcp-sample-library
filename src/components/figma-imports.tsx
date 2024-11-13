@@ -35,7 +35,7 @@ function App() {
   return shouldRenderBuilderContent ? (
     <Content
       content={content}
-      model="page"
+      model="figma-imports"
       customComponents={CUSTOM_COMPONENTS}
       apiKey={BUILDER_PUBLIC_API_KEY}
     />
